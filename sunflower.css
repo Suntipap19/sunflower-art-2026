@@ -1,0 +1,108 @@
+/* 🖼️ เต็มจอแบบ art website */
+body {
+  margin: 0;
+  height: 100vh;
+  background: linear-gradient(to top, #f3f3f3, #ffffff);
+  overflow: hidden;
+}
+
+/* ทุ่ง */
+.field {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+/* ดอกหนึ่งดอก */
+.flower-wrap {
+  position: absolute;
+  bottom: 0;
+  left: var(--x);
+  width: 220px;
+  height: 100%;
+  transform: translateX(-50%) scale(var(--scale));
+}
+
+/* 🌿 ก้าน */
+.flower-wrap::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 6px;
+  height: 0;
+  background: #4caf50;
+  transform: translateX(-50%);
+  animation: stemGrow 5s ease-out forwards;
+  animation-delay: var(--delay);
+}
+
+/* 🌻 ดอก */
+.sunflower {
+  position: absolute;
+  bottom: var(--stem);
+  left: 50%;
+  width: 180px;
+  height: 180px;
+  transform: translateX(-50%);
+  animation: sway 12s ease-in-out infinite;
+}
+
+/* 🌬️ ไหวเบา ๆ */
+@keyframes sway {
+  0%, 100% { transform: translateX(-50%) rotate(-1deg); }
+  50% { transform: translateX(-50%) rotate(1deg); }
+}
+
+/* กลีบ */
+.petal {
+  position: absolute;
+  width: 22px;
+  height: 90px;
+  background: #f2c94c;
+  border-radius: 12px;
+  top: 0;
+  left: 50%;
+  transform-origin: bottom center;
+
+  transform:
+    translateX(-50%)
+    rotate(var(--r))
+    scaleY(0);
+
+  animation: petalBloom 6s ease-out forwards;
+  animation-delay: calc(var(--delay) + 2s);
+}
+
+/* เกสร */
+.center {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  background: #6b4f2a;
+  border-radius: 50%;
+  top: 65px;
+  left: 65px;
+
+  transform: scale(0);
+  animation: centerGrow 3s ease-out forwards;
+  animation-delay: calc(var(--delay) + 6s);
+}
+
+/* 🎞️ Animations */
+@keyframes stemGrow {
+  to { height: var(--stem); }
+}
+
+@keyframes petalBloom {
+  to {
+    transform:
+      translateX(-50%)
+      rotate(var(--r))
+      scaleY(1);
+  }
+}
+
+@keyframes centerGrow {
+  to { transform: scale(1); }
+}
